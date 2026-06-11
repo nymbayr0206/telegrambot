@@ -1,0 +1,61 @@
+model:
+  provider: custom:ai-gateway
+  default: deepseek-chat
+  model: deepseek-chat
+  context_length: 64000
+  max_tokens: 4096
+
+providers:
+  ai-gateway:
+    type: openai-compatible
+    api: http://GATEWAY_SERVER_IP:3010/api/gateway
+    base_url: http://GATEWAY_SERVER_IP:3010/api/gateway
+    name: ai-gateway
+    key_env: OPENAI_API_KEY
+    api_key_env: OPENAI_API_KEY
+    default_model: deepseek-chat
+    transport: chat_completions
+    context_length: 64000
+    max_output_tokens: 4096
+    models:
+      deepseek-chat:
+        context_length: 64000
+        max_context_tokens: 64000
+        max_output_tokens: 4096
+      gpt-image-2:
+        context_length: 64000
+        max_context_tokens: 64000
+        max_output_tokens: 4096
+
+custom_providers:
+  - name: ai-gateway
+    base_url: http://GATEWAY_SERVER_IP:3010/api/gateway
+    key_env: OPENAI_API_KEY
+    model: deepseek-chat
+    api_mode: chat_completions
+    context_length: 64000
+    max_output_tokens: 4096
+    models:
+      deepseek-chat:
+        context_length: 64000
+        max_context_tokens: 64000
+        max_output_tokens: 4096
+      gpt-image-2:
+        context_length: 64000
+        max_context_tokens: 64000
+        max_output_tokens: 4096
+
+terminal:
+  backend: local
+  cwd: /workspace
+
+telegram:
+  exclusive_bot_mentions: true
+
+display:
+  tool_progress: new
+  busy_input_mode: queue
+
+plugins:
+  enabled:
+    - telegram-image-router

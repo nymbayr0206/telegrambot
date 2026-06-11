@@ -1,0 +1,6 @@
+name: telegram-image-router
+version: "1.0.0"
+description: Route Telegram image-intent messages to the AI Gateway image generation endpoint.
+kind: standalone
+provides_hooks:
+  - pre_gateway_dispatch

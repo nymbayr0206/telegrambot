@@ -1,11 +1,19 @@
+name: hermes-telegram-agent
+
 services:
-  telegrambot:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: telegrambot
+  hermes-telegram-agent:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes-telegram-agent
     restart: unless-stopped
+    command: ["gateway", "run"]
     env_file:
       - .env
     environment:
-      NODE_ENV: production
+      HERMES_HOME: /opt/data
+      HERMES_ACCEPT_HOOKS: "1"
+      TELEGRAM_ALLOWED_USERS: ${TELEGRAM_ALLOWED_USER_IDS}
+      IMAGE_MODEL: ${IMAGE_MODEL:-gpt-image-2}
+      IMAGE_CONFIRMATION_REQUIRED: ${IMAGE_CONFIRMATION_REQUIRED:-true}
+    volumes:
+      - ./data:/opt/data:rw
+      - ./workspace:/workspace
