@@ -1,0 +1,11 @@
+services:
+  telegrambot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegrambot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
