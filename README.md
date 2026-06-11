@@ -16,9 +16,9 @@ Fill in the values for the new Telegram bot:
 
 ```env
 NODE_ENV=production
-API_PROVIDER=openai
-API_BASE_URL=https://api.openai.com/v1
-API_MODEL=
+API_PROVIDER=custom
+API_BASE_URL=http://72.62.197.97:3010/api/gateway
+API_MODEL=deepseek-chat
 TELEGRAM_BOT_ID=
 TELEGRAM_BOT_USERNAME=
 BOT_TOKEN=
