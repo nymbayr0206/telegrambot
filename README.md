@@ -16,16 +16,21 @@ Fill in the values for the new Telegram bot:
 
 ```env
 NODE_ENV=production
-BOT_TOKEN=
+API_PROVIDER=openai
+API_BASE_URL=https://api.openai.com/v1
+API_MODEL=
 TELEGRAM_BOT_ID=
 TELEGRAM_BOT_USERNAME=
+BOT_TOKEN=
 TELEGRAM_ALLOWED_USER_IDS=
 API_KEY=
-API_BASE_URL=
-API_MODEL=
 ```
 
-Only `BOT_TOKEN` is required for the minimal bot to start. Create the token with Telegram `@BotFather`. The bot id, username, allowed user ids, and API values are optional placeholders for each deployment.
+Only `BOT_TOKEN` is required for the minimal bot to start. Create the token with Telegram `@BotFather`.
+
+Safe to keep in `.env.example`: `NODE_ENV`, `API_PROVIDER`, `API_BASE_URL`, `API_MODEL`, `TELEGRAM_BOT_ID`, and `TELEGRAM_BOT_USERNAME`.
+
+Set per server and do not commit real values: `BOT_TOKEN`, `TELEGRAM_ALLOWED_USER_IDS`, and `API_KEY`.
 
 ## Run locally
 
