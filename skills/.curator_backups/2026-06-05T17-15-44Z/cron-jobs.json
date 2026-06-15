@@ -1,0 +1,459 @@
+{
+  "jobs": [
+    {
+      "id": "a66854f6afb9",
+      "name": "Daily philosopher and motivational quotes",
+      "prompt": "Every day at 08:00 Asia/Ulaanbaatar time, send the user at least three beautiful philosopher and motivational quotes on Telegram. Keep it uplifting, concise, and elegant. Include the author for each quote when known. Vary the quotes day to day. Do not ask questions. Format as a short morning message with a greeting and numbered quotes. The user may appreciate Mongolian support, but English quotes are fine unless Mongolian phrasing feels natural.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * *",
+        "display": "0 0 * * *"
+      },
+      "schedule_display": "0 0 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 14
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-22T18:38:06.723302+00:00",
+      "next_run_at": "2026-06-06T00:00:00+00:00",
+      "last_run_at": "2026-06-05T00:10:13.924252+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "784276b8382c",
+      "name": "Daily calendar summary",
+      "prompt": "Every day at 09:00 Asia/Ulaanbaatar time, send the user a concise summary of today's Google Calendar schedule. Use the google-workspace skill/API. Interpret 'today' in Asia/Ulaanbaatar timezone. Include: greeting, date, total number of events, each event's local start/end time, title, location if present, and attendees only if useful. If there are no events, say the calendar is clear. Do not create, update, delete, or invite anyone. Do not ask questions; just deliver the summary to Telegram.",
+      "skills": [
+        "google-workspace"
+      ],
+      "skill": "google-workspace",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 1 * * *",
+        "display": "0 1 * * *"
+      },
+      "schedule_display": "0 1 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 14
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-22T18:39:15.256747+00:00",
+      "next_run_at": "2026-06-06T01:00:00+00:00",
+      "last_run_at": "2026-06-05T01:07:14.690416+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal",
+        "skills"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "13a317af16ea",
+      "name": "Daily AgenticForce business action plan",
+      "prompt": "Every morning at 9:00 Asia/Ulaanbaatar, send the user a concise daily action plan for building the AgenticForce AI agents sales business. Use the Team Pinnacle Playbook II coaching knowledge base at /opt/data/knowledge_bases/team_pinnacle_playbook_ii as the framework: pipeline, prospecting, follow-up, fast start, sales/client process, leadership/duplication, and accountability. Also use the user's known business context: AgenticForce sells AI agent/workflow automation to Mongolian businesses, starting with lead follow-up agents, CRM/Odoo/Google Sheets updates, Telegram notifications, daily reports, customer service, and industry-specific AI workflows. Prioritize enterprise leads such as Mongolia TOP-100 companies, Zangia leads, workshop signups, and referrals. Output in Mongolian, Telegram-friendly markdown, no tables. Keep it practical and action-oriented. Include: 1) today's main objective; 2) exact activity targets for prospects, calls/messages, follow-ups, discovery calls, proposals, and content; 3) a time-blocked schedule for the day; 4) one script/message to send; 5) one coaching question; 6) one scoreboard checklist. Do not ask questions; just send the plan.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 1 * * *",
+        "display": "0 1 * * *"
+      },
+      "schedule_display": "0 1 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 13
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-24T15:00:39.031302+00:00",
+      "next_run_at": "2026-06-06T01:00:00+00:00",
+      "last_run_at": "2026-06-05T01:07:28.651384+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "file"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "46232e14720b",
+      "name": "Supernova daily auto-generate + publish carousel",
+      "prompt": "You are the Supernova daily carousel automation. \n\nYour task:\n1. Run `python3 /opt/data/social-content/brands/supernova/scripts/supernova_auto_generate_and_publish.py` using the terminal tool\n2. Wait for it to complete (it may take 5-10 minutes to generate images via KIE API)\n3. Read the output carefully\n4. Report to the user in MONGOLIAN:\n   - If success: Which carousel was published, the topic, remaining count\n   - If failed: What went wrong, what they should do\n   - Be clear and concise\n\nIMPORTANT: \n- The script generates images via KIE GPT Image 2 API and sends to Make.com\n- Set a generous timeout (900s) for the terminal command since image generation is slow\n- Check the script's exit code and final status message",
+      "skills": [
+        "social-media-automation"
+      ],
+      "skill": "social-media-automation",
+      "model": "deepseek-chat",
+      "provider": "custom:deepseek",
+      "base_url": null,
+      "script": "supernova_auto_generate_and_publish.py",
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 1 * * *",
+        "display": "0 1 * * *"
+      },
+      "schedule_display": "0 1 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 14
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-26T00:39:53.378630+00:00",
+      "next_run_at": "2026-06-06T01:00:00+00:00",
+      "last_run_at": "2026-06-05T01:00:49.010500+00:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Unknown provider 'custom:deepseek'. Check 'hermes model' for available providers, or run 'hermes doctor' to diagnose config issues.",
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal",
+        "file",
+        "skills"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "c9c661a3d6ac",
+      "name": "Daily 11am sales plan reminder",
+      "prompt": "Every day at 11:00 Asia/Ulaanbaatar time, send the user a concise Mongolian reminder of their sales plan for Postly/AgenticForce. Include: (1) today's prospecting target: find 20 qualified leads, DM/contact 10, offer a free 5-minute content/workflow audit or 3 content ideas; (2) priority target niches: clinics/medical/beauty clinics, education centers, e-commerce/online shops, restaurants/cafes/salons where Facebook/Instagram content drives leads; (3) follow-up discipline: check overdue replies, schedule next action for every interested lead; (4) one accountability question: what is the one sales action you will finish before 6pm today? Keep it motivational but practical, mostly Mongolian, short enough for Telegram.",
+      "skills": [
+        "business-sales-coaching"
+      ],
+      "skill": "business-sales-coaching",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 10
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-26T17:00:46.616364+00:00",
+      "next_run_at": "2026-06-06T03:00:00+00:00",
+      "last_run_at": "2026-06-05T03:00:49.651434+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "file"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "97389d9a75fa",
+      "name": "Daily Sales Scoreboard",
+      "prompt": "## Role\nYou are a TOUGH sales coach using the Team Pinnacle Playbook II framework. Your tone is direct, hard-hitting, and accountability-focused.\n\n## Task\nIt's 10 PM Mongolia time (UTC+8). Send the Daily Sales Scoreboard to the user.\n\n## Daily Scoreboard Questions (ask in Mongolian)\n1. \ud83d\udd25 **\u0428\u0438\u043d\u044d Leads** \u2014 \u04e8\u043d\u04e9\u04e9\u0434\u04e9\u0440 \u0445\u044d\u0434\u044d\u043d \u0448\u0438\u043d\u044d \u0445\u0430\u0440\u0438\u043b\u0446\u0430\u0433\u0447 \u043d\u044d\u043c\u0441\u044d\u043d \u0431\u044d?\n2. \ud83d\udcde **\u0414\u0443\u0443\u0434\u043b\u0430\u0433\u0430/\u041c\u0435\u0441\u0441\u0435\u0436** \u2014 \u0425\u044d\u0434\u044d\u043d \u0434\u0443\u0443\u0434\u043b\u0430\u0433\u0430 \u044d\u0441\u0432\u044d\u043b \u043c\u0435\u0441\u0441\u0435\u0436 \u0438\u043b\u0433\u044d\u044d\u0441\u044d\u043d \u0431\u044d?\n3. \ud83d\udcac **\u042f\u0440\u0438\u0430** \u2014 \u0425\u044d\u0434\u044d\u043d \u0445\u04af\u043d\u0442\u044d\u0439 \u044f\u0440\u0438\u0430 \u04e9\u0434\u04e9\u04e9\u0436, \u0445\u0430\u0440\u0438\u0443 \u0430\u0432\u0441\u0430\u043d \u0431\u044d?\n4. \ud83d\udcc5 **\u0423\u0443\u043b\u0437\u0430\u043b\u0442** \u2014 \u0425\u044d\u0434\u044d\u043d \u0443\u0443\u043b\u0437\u0430\u043b\u0442 \u0442\u043e\u0432\u043b\u043e\u0441\u043e\u043d \u0431\u044d?\n5. \u2705 **Follow-up** \u2014 \u0425\u044d\u0434\u044d\u043d \u0434\u0430\u0433\u0430\u0445 \u0430\u0436\u0438\u043b \u0445\u0438\u0439\u0436 \u0434\u0443\u0443\u0441\u0433\u0430\u0441\u0430\u043d \u0431\u044d?\n6. \ud83d\udcca **\u0421\u0430\u043d\u0430\u043b/\u0414\u0435\u043c\u043e** \u2014 \u0425\u044d\u0434\u044d\u043d \u0441\u0430\u043d\u0430\u043b \u044d\u0441\u0432\u044d\u043b \u0434\u0435\u043c\u043e \u04af\u0437\u04af\u04af\u043b\u0441\u044d\u043d \u0431\u044d?\n7. \ud83c\udfc6 **\u0428\u0438\u043d\u044d \u041a\u043b\u0438\u0435\u043d\u0442** \u2014 \u0425\u044d\u0434\u044d\u043d \u0448\u0438\u043d\u044d \u043a\u043b\u0438\u0435\u043d\u0442 \u0430\u0432\u0441\u0430\u043d \u0431\u044d?\n8. \ud83e\udd1d **\u0420\u0435\u0444\u0435\u0440\u0440\u0430\u043b** \u2014 \u0425\u044d\u0434\u044d\u043d \u0442\u0430\u043d\u0438\u043b\u0446\u0443\u0443\u043b\u0433\u0430/\u0440\u0435\u0444\u0435\u0440\u0440\u0430\u043b \u0445\u04af\u0441\u0441\u044d\u043d \u0431\u044d?\n9. \ud83d\udcb0 **\u041e\u0440\u043b\u043e\u0433\u043e** \u2014 \u04e8\u043d\u04e9\u04e9\u0434\u04e9\u0440 \u0445\u044d\u0434\u044d\u043d \u0442\u04e9\u0433\u0440\u04e9\u0433\u0438\u0439\u043d \u043e\u0440\u043b\u043e\u0433\u043e \u043e\u043b\u0441\u043e\u043d \u0431\u044d?\n\n## Process\n1. Read the Google Sheet: ID 1vjrtCmkoQlCV7CdL44ucuh0MbT_UFU2MxBel4km9RnQ, tab 'Daily Scoreboard'\n2. Check TODAY's date row \u2014 if data exists, skip questions and just give a one-line check-in\n3. If NO data for today, send ALL 9 questions to the user\n4. Check YESTERDAY's row \u2014 if status is empty but date passed, update it to \"Missed \u274c\" with notes \"No response\"\n5. Be direct. If yesterday was missed, call them out. Example: \"\u04e8\u0447\u0438\u0433\u0434\u04e9\u0440 \u0445\u0430\u0440\u0438\u0443 \u04e9\u0433\u04e9\u04e9\u0433\u04af\u0439. \u0427\u0438 \u0430\u043b\u0434\u0441\u0430\u043d. \u04e8\u043d\u04e9\u04e9\u0434\u04e9\u0440 \u0437\u0430\u0441\u0430\u0445 \u0431\u043e\u043b\u043e\u043c\u0436 \u0431\u0430\u0439\u043d\u0430. \u0425\u0430\u0440\u0438\u0443\u043b\u0442\u0430\u0430 \u04e9\u0433!\"\n6. End with: \"\u0425\u0430\u0440\u0438\u0443\u043b\u0442\u0430\u0430 \u0431\u0438\u0447\u044d\u044d\u0440\u044d\u0439. \u0411\u0438\u0442\u0433\u0438\u0439 \u0437\u0430\u043b\u0445\u0443\u0443\u0440\u0430\u0430\u0440\u0430\u0439.\"\n\n## Tools available\n- Execute code (Python with boto3 and google API)\n- Read/write files at /opt/data/\n",
+      "skills": [
+        "business-sales-coaching"
+      ],
+      "skill": "business-sales-coaching",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 8
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-29T01:15:53.771068+00:00",
+      "next_run_at": "2026-06-06T14:00:00+00:00",
+      "last_run_at": "2026-06-05T14:08:35.082807+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal",
+        "file",
+        "search"
+      ],
+      "workdir": "/opt/data/email-campaign"
+    },
+    {
+      "id": "8b924aad76df",
+      "name": "Weekly Sales Review + Tough Coaching",
+      "prompt": "## Role\nYou are a NO-NONSENSE sales coach. You use the Team Pinnacle Playbook II framework. Your tone is TOUGH but fair. You call it like you see it. No sugar-coating.\n\n## Task\nIt's Sunday night ~9 PM in Mongolia. Time for the WEEKLY SALES PERFORMANCE REVIEW.\n\n## Process\n1. Read the Google Sheet: ID 1vjrtCmkoQlCV7CdL44ucuh0MbT_UFU2MxBel4km9RnQ, tab 'Daily Scoreboard'\n2. Get ALL rows from this week (Monday through Sunday)\n3. Calculate weekly totals and averages for each metric\n4. Check how many days were \"Missed\" or unanswered\n5. Write the weekly summary to the 'Weekly Reports' tab\n\n## Performance Standards (for AgenticForce / AI automation sales)\nTarget per day:\n- Leads: 20 minimum\n- Calls/Messages: 10 minimum\n- Conversations: 3 minimum\n- Appointments booked: 1 minimum\n- Follow-ups: 5 minimum\n- Proposals/Demos: 1 minimum\n- New Clients: aim for 1/week\n- Referrals: 3/week\n- Revenue: consistent growth\n\n## Weekly Report Format (write to Weekly Reports tab)\nColumns: Week #, Start Date, End Date, Total Leads, Total Calls, Total Conversations, Total Appointments, Total Follow-ups, Total Proposals, Total Clients, Total Referrals, Total Revenue, Avg Daily Score, Target Met?, Coach Summary\n\n## Coaching Message to Send\nWrite a TOUGH, DIRECT weekly performance review in MONGOLIAN. Include:\n1. **Grade the week** \u2014 A (exceptional), B (good), C (average), D (poor), F (failure)\n2. **Numbers breakdown** \u2014 What they hit, what they missed\n3. **Biggest weakness** \u2014 Call it out bluntly. Example: \"\u0422\u0430\u043d\u044b \u0441\u0443\u043b \u0442\u0430\u043b \u0431\u043e\u043b follow-up. 5 \u0445\u043e\u043d\u043e\u0433\u0442 \u0435\u0440\u0434\u04e9\u04e9 3 follow-up \u0445\u0438\u0439\u0441\u044d\u043d. \u042d\u043d\u044d \u043d\u044c \u0438\u0447\u043c\u044d\u044d\u0440.\"\n4. **Tough love** \u2014 Be harsh if needed. \"\u0427\u0438 \u044f\u043b\u0430\u0433\u0434\u0430\u0436 \u0431\u0430\u0439\u043d\u0430. \u0411\u043e\u0441. \u04e8\u043d\u04e9\u04e9\u0434\u0440\u04e9\u04e9\u0441 \u044d\u0445\u044d\u043b.\"\n5. **One action for next week** \u2014 What MUST change\n6. **Motivation punch** \u2014 End with something that lights a fire\n\n## Rules\n- BE TOUGH. The user ASKED for this.\n- If all numbers are zero or all days missed: \"\u0427\u0438 \u044d\u043d\u044d \u0434\u043e\u043b\u043e\u043e \u0445\u043e\u043d\u043e\u0433\u0442 \u044e\u0443 \u0447 \u0445\u0438\u0439\u0433\u044d\u044d\u0433\u04af\u0439. \u0411\u0438 \u0447\u0430\u043c\u0430\u0439\u0433 \u0438\u043b\u04af\u04af \u0447\u0430\u0434\u0432\u0430\u0440\u0442\u0430\u0439 \u0433\u044d\u0434\u044d\u0433\u0442 \u0438\u0442\u0433\u044d\u0436 \u0431\u0430\u0439\u043d\u0430. \u0418\u0440\u044d\u0445 \u0434\u043e\u043b\u043e\u043e \u0445\u043e\u043d\u043e\u0433\u0442 \u04e9\u04e9\u0440\u0447\u043b\u04e9\u043b\u0442 \u0445\u0438\u0439\u0445\u0433\u04af\u0439 \u0431\u043e\u043b \u0431\u0438\u0434\u043d\u0438\u0439 \u043a\u043e\u0443\u0447\u0438\u043d\u0433\u0438\u0439\u043d \u0445\u0430\u0440\u0438\u043b\u0446\u0430\u0430 \u0443\u0442\u0433\u0430\u0433\u04af\u0439.\"\n- If good numbers: Acknowledge but push harder. \"\u0421\u0430\u0439\u043d, \u0433\u044d\u0445\u0434\u044d\u044d \u0445\u0430\u043d\u0433\u0430\u043b\u0442\u0433\u04af\u0439. \u0414\u0430\u0440\u0430\u0430 \u0434\u043e\u043b\u043e\u043e \u0445\u043e\u043d\u043e\u0433\u0442 2 \u0434\u0430\u0445\u0438\u043d \u0438\u0445 \u0445\u0438\u0439.\"\n- Always end with a direct challenge.\n\n## Tools available\n- Execute code (Python with google API client and boto3)\n- Read/write files\n",
+      "skills": [
+        "business-sales-coaching"
+      ],
+      "skill": "business-sales-coaching",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 13 * * 0",
+        "display": "0 13 * * 0"
+      },
+      "schedule_display": "0 13 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-29T01:16:04.994125+00:00",
+      "next_run_at": "2026-06-07T13:00:00+00:00",
+      "last_run_at": "2026-05-31T13:04:12.515781+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal",
+        "file",
+        "search"
+      ],
+      "workdir": "/opt/data/email-campaign"
+    },
+    {
+      "id": "7071c38b2b73",
+      "name": "Obsidian vault auto-sync",
+      "prompt": "Auto-sync Obsidian vault: cd /opt/data/home/Obsidian Vault && git add -A && git commit -m \"auto-sync $(date)\" || true && git push",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "cd /opt/data/home/Obsidian Vault && git add -A && git commit -m \"auto-sync $(date +%Y-%m-%d_%H:%M)\" 2>/dev/null || true && git push 2>&1 || echo \"Push failed\"",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 60,
+        "display": "every 60m"
+      },
+      "schedule_display": "every 60m",
+      "repeat": {
+        "times": null,
+        "completed": 113
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-31T16:42:49.493125+00:00",
+      "next_run_at": "2026-06-05T17:27:37.862601+00:00",
+      "last_run_at": "2026-06-05T16:27:37.862601+00:00",
+      "last_status": "error",
+      "last_error": "Script not found: /opt/data/scripts/cd /opt/data/home/Obsidian Vault && git add -A && git commit -m \"auto-sync $(date +%Y-%m-%d_%H:%M)\" 2>/dev/null || true && git push 2>&1 || echo \"Push failed\"",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "9a6f1f36d2c1",
+      "name": "Postly content pipeline",
+      "prompt": "You run the Postly/Hermes content pipeline.\n\nBASE: https://www.postly.mn\nAUTH: Header \"x-hermes-secret\" using HERMES_AGENT_SECRET from env\n\nEvery 5 minutes:\n\n1. Fetch planned items:\n   GET https://www.postly.mn/api/hermes/postly/planned\n   Header: x-hermes-secret\n   \u2192 Response key: \"items\" array. Each item has: id, contentType, category, title, caption, status, company (with brandGuideline, productsServicesPostly, socialAccounts), contentPlan, template.\n\n2. For each planned item whose title/caption/headline/imagePrompt are missing (null), generate Mongolian content:\n   - title (compelling post title in Mongolian)\n   - headline (short hook)\n   - caption (full Facebook/Instagram caption in Mongolian)\n   - imagePrompt (English \u2014 describe the visual scene, colors from brandGuideline.brandColors)\n   - creativeDirection (English \u2014 visual style direction)\n   \n   Use brandGuideline.brandColors, toneOfVoice, productsServicesPostly for context.\n\n3. Save draft:\n   POST https://www.postly.mn/api/hermes/postly/draft\n   Headers: x-hermes-secret, Content-Type: application/json\n   Body: {\"contentItemId\": \"<id>\", \"title\": \"...\", \"headline\": \"...\", \"caption\": \"...\", \"imagePrompt\": \"...\", \"creativeDirection\": \"...\", \"status\": \"WAITING_APPROVAL\", \"agentName\": \"Hermes\"}\n\n4. Log: POST https://www.postly.mn/api/hermes/postly/logs\n   Body: {\"event\": \"fetch_planned\", \"status\": \"success\", \"message\": \"Generated drafts for X items\"}.",
+      "skills": [
+        "social-media-automation"
+      ],
+      "skill": "social-media-automation",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 5,
+        "display": "every 5m"
+      },
+      "schedule_display": "every 5m",
+      "repeat": {
+        "times": null,
+        "completed": 659
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-02T14:00:36.921852+00:00",
+      "next_run_at": "2026-06-05T17:20:44.037681+00:00",
+      "last_run_at": "2026-06-05T17:15:44.037681+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1805309193",
+        "chat_name": "nyffy damdindoo",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal",
+        "web"
+      ],
+      "workdir": null
+    },
+    {
+      "id": "c8c72f49dd51",
+      "name": "OOS 1M M&T Morning Reminder",
+      "prompt": "You are a personal reminder assistant. Today is the current date. The user has a major event coming up:\n\n**Event:** OOS, Celebration Family\n**Date:** July 4, 2026 (Saturday)\n**Goal:** Save/earn at least 1 MILLION M&T\n\nYour job is to send a daily morning reminder that:\n1. States how many days remain until July 4\n2. Reminds them of the 1 million M&T goal\n3. Asks them directly: \"Did you make money yesterday?\" and \"Did you save for this?\"\n4. Asks them to quickly reply with their current progress (how much M&T saved so far)\n\nMake the tone direct and motivating \u2014 this is a personal project/goal. If there are fewer than 7 days left, make it more urgent. If July 4 has passed, just say the event has passed and stop.\n\nDo NOT use any tools \u2014 just output the reminder message directly as your final answer.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * *",
+        "display": "0 0 * * *"
+      },
+      "schedule_display": "0 0 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-03T13:44:08.746595+00:00",
+      "next_run_at": "2026-06-06T00:00:00+00:00",
+      "last_run_at": "2026-06-05T00:06:29.071395+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "2036690188",
+        "chat_name": "admin tradearena Battushig T",
+        "thread_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null
+    }
+  ],
+  "updated_at": "2026-06-05T17:15:44.037892+00:00"
+}
