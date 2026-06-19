@@ -147,20 +147,6 @@ ssh -T git@github.com
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 ```
 
-For a single repo on a headless/server session, prefer a repo-scoped remote switch after the key is added to GitHub:
-
-```bash
-# Trust GitHub host key non-interactively and verify auth
-ssh -o StrictHostKeyChecking=accept-new -T git@github.com || true
-
-# Switch this repo from HTTPS to SSH so push works without PAT prompts
-cd /path/to/repo
-git remote set-url origin git@github.com:OWNER/REPO.git
-git push -u origin HEAD
-```
-
-If multiple GitHub identities may exist on the server, generate/use a dedicated key file and bind it in `~/.ssh/config` with `IdentityFile` and `IdentitiesOnly yes` before testing `ssh -T`.
-
 **Step 5: Configure git identity**
 
 ```bash
@@ -258,7 +244,4 @@ fi
 | `ssh: connect to host github.com port 22: Connection refused` | Try SSH over HTTPS port: add `Host github.com` with `Port 443` and `Hostname ssh.github.com` to `~/.ssh/config` |
 | Credentials not persisting | Check `git config --global credential.helper` — must be `store` or `cache` |
 | Multiple GitHub accounts | Use SSH with different keys per host alias in `~/.ssh/config`, or per-repo credential URLs |
-| `gh: command not found` + no sudo | Option A: Use git-only Method 1 (curl + git, no install). Option B: Download gh binary directly — `curl -sL https://github.com/cli/cli/releases/download/v2.67.0/gh_2.67.0_linux_amd64.tar.gz -o /tmp/gh.tar.gz && tar -xzf /tmp/gh.tar.gz -C /tmp && cp /tmp/gh_2.67.0_linux_amd64/bin/gh ~/.local/bin/gh && chmod +x ~/.local/bin/gh` — then proceed with Method 2 |
-| `GraphQL: Resource not accessible by personal access token (createRepository)` | **Fine-grained PAT** (`github_pat_...`) lacks permission to create repos via API — it only grants access to repos explicitly selected in the GitHub UI. **Fix:** Use a Classic PAT (`ghp_...`) with `repo` scope, or create the repo manually on GitHub.com first then use the fine-grained PAT to manage it. |
-| `error validating token: missing required scope 'read:org'` | Classic PAT missing a scope — `gh auth login --with-token` rejects it. **Workaround:** Set `GH_TOKEN` env var instead: `export GH_TOKEN="ghp_..."` — this bypasses gh's strict scope validation. Most API operations (repo create, issues, PRs) work fine. The missing scope just means some org-level queries are unavailable. |
-| `gh auth login --with-token` fails but `GH_TOKEN` works | `gh auth login` validates token scopes strictly. If you only need `gh` for API calls (not as git credential helper), skip login entirely — just `export GH_TOKEN="<token>"` and call `gh commands` directly. The token is used without scope pre-checks. |
+| `gh: command not found` + no sudo | Use git-only Method 1 above — no installation needed |

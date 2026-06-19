@@ -199,10 +199,6 @@ those carry more visual identity than the specific font face.
 | `spotify.md` | Spotify | Vibrant green on dark, bold type, album-art-driven |
 | `uber.md` | Uber | Bold black and white, tight type, urban energy |
 
-## User-specific dashboard references
-
-- `references/agenticforce-agent-dashboard.md` — reusable pattern for the user's dark AgenticForce AI-agent operations dashboard: sidebar agent list, KPI cards, charts, Mongolian labels, gold/green accents, and data-source mapping.
-
 ## Choosing a Design
 
 Match the design to the content:

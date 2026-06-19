@@ -356,24 +356,6 @@ curl -s \
   done
 ```
 
-## References
-
-- `references/project-checklist-setup.md` — batch-create a fix/task checklist as GitHub Issues for a new or existing project. Covers repo creation handoff, bulk issue creation loops, label setup, milestones, and verification.
-- `references/conversation-to-issues.md` — extract action items from past conversation transcripts and create structured GitHub issues. Covers session_search, action-item extraction, repo identification, and batch creation with status notes.
-
-## 6. Project Checklist (Batch Issue Setup)
-
-When a user asks to create a "fix checklist" or "task tracker" as GitHub Issues (common for new projects or sprint planning):
-
-1. **Identify the repo** — create one if it doesn't exist (via `github-repo-management`)
-2. **Draft the checklist** as a scratch file first for user review
-3. **Create issues in batch** using a shell loop
-4. **Set up labels** (priority:critical/high/medium/low, fix, enhancement)
-5. **Optional:** link via milestone for MVP/phase grouping
-6. **Verify** with `gh issue list`
-
-See `references/project-checklist-setup.md` for the full workflow with examples and rate-limit handling.
-
 ## Quick Reference Table
 
 | Action | gh | curl endpoint |

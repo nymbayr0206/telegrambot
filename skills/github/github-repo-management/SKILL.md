@@ -15,12 +15,6 @@ metadata:
 
 Create, clone, fork, configure, and manage GitHub repositories. Each section shows `gh` first, then the `git` + `curl` fallback.
 
-## References
-
-- `references/vercel-nextjs-route-deploy.md` — local-repo workflow for adding a Next.js route to a Vercel-hosted site, building, pushing to the deployment branch, and verifying the public URL.
-- `references/vercel-deployment-url-discovery.md` — how to find the real Vercel deployment URL when a custom domain maps to a different platform (Hostinger, etc.). Covers response-body tells, preview URL testing, and the domain table pattern.
-- `references/github-api-cheatsheet.md` - quick reference for common GitHub REST API calls.
-
 ## Prerequisites
 
 - Authenticated with GitHub (see `github-auth` skill)
