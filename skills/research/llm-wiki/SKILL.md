@@ -106,45 +106,6 @@ When the user asks to create or start a wiki:
 6. Write initial `log.md` with creation entry
 7. Confirm the wiki is ready and suggest first sources to ingest
 
-### Step 8 (Recommended): Create a Companion Skill
-
-After building the wiki, create a **companion skill** so the wiki auto-activates when the user asks domain questions. Without this, the wiki is an orphan — agents in future sessions won't know it exists unless the user explicitly loads the llm-wiki skill.
-
-Use `skill_manage(action='create')` to create a user-local skill with:
-
-- **Trigger conditions** — domain keywords that activate the skill (e.g. "Mongolian business law", "company formation")
-- **Wiki path reference** — hardcode the `WIKI_PATH` so the skill doesn't depend on env vars
-- **Orientation steps** — copy the orientation block from this skill (read SCHEMA.md, index.md, log.md)
-- **Query workflow** — how to search and answer from the wiki
-- **Domain-specific conventions** — e.g. always include Mongolian Cyrillic terms alongside English
-- **Disclaimers** — if the domain is legal/medical/financial, include an appropriate disclaimer
-
-Example companion skill skeleton:
-
-```yaml
----
-name: my-domain-skill
-description: "Expert on <domain>: answer queries using the <domain> wiki at WIKI_PATH."
-version: 1.0.0
-author: Hermes Agent
-metadata:
-  hermes:
-    tags: [domain-specific, wiki]
-    category: research
----
-# <Domain> Expert
-```
-
-Then add body sections for:
-- When This Skill Activates (domain keywords)
-- Knowledge Base Path (hardcoded)
-- Orientation (read SCHEMA + index + log each session)
-- Querying the Knowledge Base
-- Response Guidelines
-- Disclaimers
-
-This turns the wiki from a passive data store into an **auto-loading domain expert**.
-
 ### SCHEMA.md Template
 
 Adapt to the user's domain. The schema constrains agent behavior and ensures consistency:
@@ -535,9 +496,6 @@ vault in Obsidian on your laptop/phone — changes appear within seconds.
   The agent should check log size during lint.
 - **Handle contradictions explicitly** — don't silently overwrite. Note both claims with dates,
   mark in frontmatter, flag for user review.
-- **Orphan wiki trap** — a wiki without a companion skill is invisible to future sessions.
-  After building the wiki, always create the companion skill so the wiki auto-loads on domain
-  queries. The cheapest orphan is the one you just built and forgot to register.
 
 ## Related Tools
 

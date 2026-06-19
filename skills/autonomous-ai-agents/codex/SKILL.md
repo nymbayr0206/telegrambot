@@ -38,21 +38,6 @@ standalone Codex CLI, a valid CLI OAuth session may live under
 `~/.codex/auth.json`; do not treat a missing `OPENAI_API_KEY` alone as proof
 that Codex auth is missing.
 
-### Custom Providers (Alternative Backends)
-
-Codex CLI supports pointing at custom OpenAI-compatible backends via `config.toml`:
-
-```toml
-# ~/.config/codex/config.toml
-[providers.kie]
-api_key = "kie_xxx"
-base_url = "https://api.kie.ai/codex/v1"
-```
-
-This enables using non-OpenAI models (GPT-5.5 via KIE, Claude via OpenRouter, local models, etc.) with the Codex CLI interface. However, the specialized **GPT-5-Codex-Mini** model is only available through OpenAI's native Codex backend.
-
-For more provider configuration examples and cost comparisons, see the `opencode` skill's `references/custom-providers.md`.
-
 ## One-Shot Tasks
 
 ```

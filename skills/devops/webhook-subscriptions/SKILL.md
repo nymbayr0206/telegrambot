@@ -1,7 +1,7 @@
 ---
 name: webhook-subscriptions
 description: "Webhook subscriptions: event-driven agent runs."
-version: 1.2.0
+version: 1.1.0
 platforms: [linux, macos, windows]
 metadata:
   hermes:
@@ -177,20 +177,6 @@ hermes webhook subscribe antenna-matches \
 The POST returns `200 OK` on successful delivery, `502` on target failure — so upstream services can retry intelligently. HMAC auth, rate limits, and idempotency still apply.
 
 Requires `--deliver` to be a real target (telegram, discord, slack, github_comment, etc.) — `--deliver log` is rejected because log-only direct delivery is pointless.
-
-### Website signup lead capture
-
-For Clerk Auth `user.created` and academy enrollment signups that should notify Hermes and save/update a lead, use `references/clerk-academy-signup-to-hermes.md`. It defines the website-to-Hermes payload schema, HMAC headers, idempotency keys, and Hermes-side lead scoring/upsert behavior.
-
-For AgenticForce workshop/webinar registration pages, use `references/agenticforce-workshop-signups.md`. The key workflow lesson is: prepare/verify the Google Sheet tab and Hermes webhook storage path before sending outreach, then deploy or patch the site signup route and only use a verified public URL in campaign emails.
-
-### Brand entry → content generation
-
-For client-facing brand entry websites (Vercel/Next.js hosted) where clients submit brand logos, colors, and settings, and you want Hermes to auto-generate carousel posters and reels via KIE.AI, use `references/brand-entry-to-content-generation.md`. It covers the Vercel → Hermes webhook direction (opposite of `hermes-cron-to-vercel-ingest.md`), the webhook subscription command, payload schema, Next.js API route code, and the Vercel API token project scoping pitfall (token silently returns `not_found` when no projects are scoped to it).
-
-### Hermes cron to app ingest webhook
-
-When Hermes is the sender and a Vercel/Next.js app is the receiver, use `references/hermes-cron-to-vercel-ingest.md`. It covers the outbound cron pattern, HMAC headers (`x-hermes-source`, `x-hermes-timestamp`, `x-hermes-signature`), signed test payloads, and daily bilingual industry-news ingestion payloads.
 
 ## Security
 

@@ -47,14 +47,9 @@ python scripts/office/unpack.py presentation.pptx unpacked/
 
 ## Creating from Scratch
 
-**Read [pptxgenjs.md](pptxgenjs.md) for full details (Node.js/pptxgenjs).**
+**Read [pptxgenjs.md](pptxgenjs.md) for full details.**
 
 Use when no template or reference presentation is available.
-
-**Alternative: python-pptx (Python)** — Read [references/python-pptx-google-slides.md](references/python-pptx-google-slides.md) for the full workflow. Use when:
-- Node.js/npm is not available but python-pptx is (e.g., Hermes venv)
-- You need complex multi-slide generation with programmatic logic
-- You also need to upload the result to Google Slides via Drive
 
 ---
 

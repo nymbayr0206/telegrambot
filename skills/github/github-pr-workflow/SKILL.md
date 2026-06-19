@@ -55,35 +55,6 @@ echo "Owner: $OWNER, Repo: $REPO"
 
 ---
 
-## 0. Before You Start: Scan Existing Branches
-
-**CRITICAL: Before creating any new code (routes, files, features), check all remote branches first.** The work may already exist in a feature branch that hasn't been merged to main yet.
-
-```bash
-# List all remote branches
-git branch -a
-
-# Look for branches matching the feature/domain name
-git branch -a | grep -i "postly\|feature-name\|related-term"
-
-# Check what a branch contains
-git log --oneline origin/<branch> -5
-git diff --stat main..origin/<branch> | tail -5   # what files changed
-git show --stat <commit-sha>                       # what a specific commit added
-```
-
-**When you find existing work in a feature branch:**
-- Do NOT rewrite or duplicate it — merge the branch instead
-- If it's behind main, rebase or merge main into it
-- If it's on a separate branch (e.g., `codex/postly-backend-supabase-pooler`), merge it into main:
-  ```bash
-  git checkout main
-  git merge origin/<branch> --no-edit
-  git push origin main
-  ```
-
-**Why this matters:** Creating duplicate routes, models, or code from scratch wastes time, requires reverting, and may conflict with existing work that the user already tested and approved.
-
 ## 1. Branch Creation
 
 This part is pure `git` — identical either way:
@@ -137,26 +108,6 @@ Types: `feat`, `fix`, `refactor`, `docs`, `test`, `ci`, `chore`, `perf`
 ```bash
 git push -u origin HEAD
 ```
-
-#### If GitHub auth is missing and push is blocked
-
-Do not stop with only a verbal description of the changes. Preserve the work in a portable artifact so the user can apply it or push later:
-
-```bash
-# after committing locally
-git format-patch -1 HEAD --stdout > /tmp/feature.patch
-git status --short --branch
-```
-
-Then report:
-- local repo path
-- branch name
-- commit SHA/title
-- verification commands that passed
-- exact push/auth blocker
-- patch file path for delivery
-
-Avoid encoding the missing credential as a durable tool limitation; it is a setup issue. If credentials become available later, push the existing branch instead of recreating the work.
 
 ### Create the PR
 

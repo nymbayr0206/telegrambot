@@ -30,24 +30,6 @@ Use [OpenCode](https://opencode.ai) as an autonomous coding worker orchestrated 
 - Git repository for code tasks (recommended)
 - `pty=true` for interactive TUI sessions
 
-## Custom Provider Configuration
-
-OpenCode is provider-agnostic. You can use any OpenAI-compatible API as a backend by configuring a custom provider in `~/.config/opencode/config.toml`:
-
-```toml
-[providers.kie]
-api_key = "kie_xxx"
-base_url = "https://api.kie.ai/codex/v1"
-
-[models.default]
-provider = "kie"
-model = "gpt-5-5"
-```
-
-This works with any OpenAI-compatible endpoint: KIE, OpenRouter, LiteLLM proxies, vLLM, Ollama (local), or any custom backend. For interactive sessions, switch models at runtime with `Ctrl+X M`.
-
-**Cost consideration:** Official Codex subscriptions (Plus $20/mo, Pro $100-400/mo) include Codex-optimized models only available through OpenAI's backend. Custom providers give you general models (GPT-5.5, Claude, etc.) at potentially lower pay-as-you-go cost but without Codex-specific optimizations. See `references/custom-providers.md` for common provider configurations and cost comparisons.
-
 ## Binary Resolution (Important)
 
 Shell environments may resolve different OpenCode binaries. If behavior differs between your terminal and Hermes, check:
@@ -213,7 +195,6 @@ terminal(command="opencode stats --days 7 --models anthropic/claude-sonnet-4")
   - `process(action="log", session_id="<id>")`
 - Avoid sharing one working directory across parallel OpenCode sessions.
 - Enter may need to be pressed twice to submit in the TUI (once to finalize text, once to send).
-- Custom providers give you general-purpose models, NOT Codex-optimized models (GPT-5-Codex-Mini is OpenAI-only). For coding-specific optimized models, the official Codex subscription is currently the only path.
 
 ## Verification
 

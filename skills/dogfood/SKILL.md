@@ -6,7 +6,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [qa, testing, browser, web, dogfood]
-    related_skills: [web-security-reconnaissance]
+    related_skills: []
 ---
 
 # Dogfood: Systematic Web Application QA Testing

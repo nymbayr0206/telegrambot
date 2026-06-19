@@ -1,7 +1,7 @@
 ---
 name: hermes-agent
 description: "Configure, extend, or contribute to Hermes Agent."
-version: 2.1.1
+version: 2.1.0
 author: Hermes Agent + Teknium
 license: MIT
 platforms: [linux, macos, windows]
@@ -141,8 +141,7 @@ hermes mcp configure NAME   Toggle tool selection
 ### Gateway (Messaging Platforms)
 
 ```
-hermes gateway run          Start gateway foreground (--replace to auto-clear stale PIDs)
-hermes gateway run --replace  Force-start, clearing any stale PID lock
+hermes gateway run          Start gateway foreground
 hermes gateway install      Install as background service
 hermes gateway start/stop   Control the service
 hermes gateway restart      Restart the service
@@ -153,10 +152,6 @@ hermes gateway setup        Configure platforms
 Supported platforms: Telegram, Discord, Slack, WhatsApp, Signal, Email, SMS, Matrix, Mattermost, Home Assistant, DingTalk, Feishu, WeCom, BlueBubbles (iMessage), Weixin (WeChat), API Server, Webhooks. Open WebUI connects via the API Server adapter.
 
 Platform docs: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
-
-Telegram notes: BotFather tokens must include the numeric bot id and colon prefix (`1234567890:AA...`); a suffix-only token is rejected as `telegram.error.InvalidToken: Not Found`. For direct config, put credentials under `platforms.telegram.enabled/token`, while top-level `telegram:` is for behavior settings. If the bot connects but denies a user, approve the pairing code with `hermes pairing approve telegram <CODE>`. See `references/telegram-gateway-setup.md` for the compact verification/debugging recipe. For group/supergroup setup with Topics (bot-username lookup, conversion, admin requirements, and cron delivery to specific topics), see `references/telegram-group-supergroup-topics.md`.
-
-**Proactivity trigger — user introducing a new contact:** When the user says someone (\"X can communicate with you\", \"make Y an admin\", \"X will contact the bot\"), proactively offer to authorize them via pairing code or allowed_chats. Do NOT wait for them to try first and fail — the user expects you to set it up as soon as they mention the new person. The full authorize-new-user workflow (resolve @username, pairing code flow, allowed_chats) is documented in `references/telegram-gateway-setup.md` under Method 1 and Method 2.
 
 ### Sessions
 
@@ -190,8 +185,6 @@ hermes webhook list         List subscriptions
 hermes webhook remove NAME  Remove a subscription
 hermes webhook test NAME    Send a test POST
 ```
-
-For Vercel/Next.js app integrations that combine scheduled Hermes cron agents, signed webhooks, bilingual content payloads, image URLs, and real Hermes telemetry dashboards, see `references/vercel-webhook-cron-and-telemetry.md`.
 
 ### Profiles
 
@@ -514,8 +507,6 @@ Provider priority (auto-detected):
 3. **OpenAI Whisper** — paid: set `VOICE_TOOLS_OPENAI_KEY`
 4. **Mistral Voxtral** — set `MISTRAL_API_KEY`
 
-When a user asks which voice/STT backend is being used or whether voice consumes tokens, check the live `stt` config when available instead of answering generically. Explain that STT is separate from the main chat model/provider: audio is transcribed first, then only the transcript enters the LLM context. Local STT has no per-audio API token cost, but long transcripts still consume normal chat context/tokens just like long typed messages.
-
 Config:
 ```yaml
 stt:
@@ -523,16 +514,7 @@ stt:
   provider: local        # local, groq, openai, mistral
   local:
     model: base          # tiny, base, small, medium, large-v3
-    language: ''         # force language (e.g. 'mn' for Mongolian), empty = auto-detect
 ```
-
-Gateway/local-STT setup notes:
-- Config changes require a gateway restart before voice messages use the new STT provider.
-- **STT not working? Do NOT patch code first.** Check which `.env` file the gateway actually reads — see `references/stt-debugging-workflow.md` for the full diagnostic chain.
-- In source checkouts, verify `faster_whisper` imports with the same venv Python used to run the gateway.
-- If `/path/to/.venv/bin/python -m pip install faster-whisper` fails because the venv has no pip, use `uv pip install --python /path/to/.venv/bin/python faster-whisper` instead of treating the venv as broken.
-- Detailed recipe: `references/gateway-local-stt-faster-whisper.md`.
-- Mongolian STT quality/load guidance: `references/mongolian-stt.md` covers forcing `language: mn`, testing `small`/`medium` before `large-v3` on small CPU servers, and when to prefer cloud STT.
 
 ### TTS (Text → Voice)
 
@@ -670,10 +652,6 @@ the `cronjob` tool, the `hermes cron` CLI (`list`, `add`, `edit`,
   `skip_memory=True` by default, and cron deliveries are framed with a
   header/footer instead of being mirrored into the target gateway
   session (keeps role alternation intact).
-
-Common pitfalls (model/provider override, script path constraint,
-no_agent toggle, error backoff, state-file pattern, job capacity limits):
-`references/cron-job-pitfalls.md`.
 
 User docs: https://hermes-agent.nousresearch.com/docs/user-guide/features/cron
 
@@ -817,11 +795,8 @@ and logs — avoids shell-escaping backslashes in bash.
 
 ### Voice not working
 1. Check `stt.enabled: true` in config.yaml
-2. **Do NOT patch transcription code.** Follow the diagnostic chain in `references/stt-debugging-workflow.md` first — the most common cause is the wrong `.env` file.
-3. Verify provider: `pip install faster-whisper` or set API key. In source-checkout venvs without pip, use `uv pip install --python /path/to/.venv/bin/python faster-whisper`.
-4. In gateway: `/restart`. In CLI: exit and relaunch.
-
-For Telegram gateway voice/STT setup, token placement, source-checkout PATH fixes, and verification commands, see `references/telegram-gateway-stt-and-path.md`.
+2. Verify provider: `pip install faster-whisper` or set API key
+3. In gateway: `/restart`. In CLI: exit and relaunch.
 
 ### Tool not available
 1. `hermes tools` — check if toolset is enabled for your platform
@@ -845,9 +820,6 @@ For Telegram gateway voice/STT setup, token placement, source-checkout PATH fixe
 3. Load explicitly: `/skill name` or `hermes -s name`
 
 ### Gateway issues
-
-**VPS reconnaissance:** When SSHing into a Hermes VPS to check gateway state, config location, port bindings, and service status, use the compact recipe at `references/vps-gateway-inspection.md`.
-
 Check logs first:
 ```bash
 grep -i "failed to send\|error" ~/.hermes/logs/gateway.log | tail -20
@@ -857,28 +829,8 @@ Common gateway problems:
 - **Gateway dies on SSH logout**: Enable linger: `sudo loginctl enable-linger $USER`
 - **Gateway dies on WSL2 close**: WSL2 requires `systemd=true` in `/etc/wsl.conf` for systemd services to work. Without it, gateway falls back to `nohup` (dies when session closes).
 - **Gateway crash loop**: Reset the failed state: `systemctl --user reset-failed hermes-gateway`
-- **Platform credential lock is stale**: If Telegram or another platform says a token is already in use but the referenced PID is missing or zombie (`ps -o stat= -p <PID>` starts with `Z`), quarantine the stale lock under `$HERMES_HOME/.local/state/hermes/gateway-locks/` and restart. Do not remove locks for real live processes. See `references/stale-gateway-platform-locks.md` for the verified cleanup and restart recipe.
-- **Foreground restart killed by timeout**: When starting the gateway from an agent/tool session, prefer a tracked background process (`terminal(background=true)`) for `hermes gateway run`. A foreground restart can be killed by tool timeout and leave another stale platform lock from the short-lived PID. After emergency manual/background recovery, recommend installing or restarting the gateway as a service (`hermes gateway install` then `hermes gateway start`, or the system service variant where appropriate) so it does not depend on the parent shell/tool session.
-- **`hermes: command not found` in a source checkout**: If the repo exists but the console script is not on `PATH`, invoke the checked-out launcher with the repo venv: `./.venv/bin/python ./hermes gateway status`, `./.venv/bin/python ./hermes gateway run`, or use absolute paths such as `/opt/hermes/.venv/bin/python /opt/hermes/hermes gateway run`. Prefer fixing PATH for normal use, but this fallback is useful when starting/debugging the gateway from inside a live checkout.
-- **Gateway keeps dying in Docker container (ttyd as PID 1)**: The gateway process must be fully daemonized to survive beyond the agent session. Use the double-fork daemon pattern at `/opt/data/scripts/start_gateway_daemon.py`. Details in `references/docker-gateway-persistence.md` — covers stale lock cleanup, signal hardening, zombie cleanup, and PID tracking.
-- **Auto-start script fails silently when `hermes` not on PATH**: The startup script (`/hermes.sh` or similar) calls `hermes gateway run` to auto-start the gateway before launching the CLI. If `hermes` is not on PATH, this fails silently — no error output, no logs. Symptom: `hermes gateway status` shows "not running" with no obvious cause. Diagnosis: check `which hermes` to confirm PATH coverage; read the startup script to see how the gateway is launched. Fix by adding the venv bin dir to PATH or adjusting the script to use the absolute path (`/opt/hermes/.venv/bin/hermes gateway run`).
-- **Gateway shows "draining for shutdown" with no process**: Indicates a stale gateway state from a previous run that was killed or crashed while agents were active. Clean up stale platform locks under `~/.local/state/hermes/gateway-locks/` (verify the referenced PID is truly dead with `ps -p <PID>`, then `rm -f <lockfile>`), then restart with `hermes gateway run --replace`. If `hermes gateway status` shows "not running" alongside a "draining" message, the state file may also need clearing.
-
-#### Docker / Container-specific
-
-In Docker containers, PID 1 is typically ttyd/nginx — no systemd available.
-
-- **`hermes gateway install` refuses** with "Service installation is not needed inside a Docker container." This is expected; the container runtime is the service manager.
-- **Background process dies with parent shell**: Running `hermes gateway run` via `terminal(background=true)` spawns the gateway as a child of the tool's bash process. When the tool session ends (parent exit), the gateway receives SIGTERM and shuts down. **Do not rely on `terminal(background=true)` for persistent gateway in Docker.**
-- **Double-fork daemon pattern**: Use the Python double-fork recipe (`start_gateway_daemon.py`) to fully reparent the gateway to PID 1. See `references/docker-gateway-persistence.md` for the reference implementation and setup steps.
-- **PATH in auto-start scripts**: Container startup scripts (`/hermes.sh`, Dockerfile ENTRYPOINT/CMD) that call `hermes gateway run` must either add the venv bin dir to PATH or use absolute paths. zsh does NOT source `.profile` unconditionally — use `.zshenv` instead. See `references/docker-gateway-persistence.md` for PATH setup guidance.
-- **zsh PATH setup**: Add `export PATH="/opt/hermes/.venv/bin:$PATH"` to `~/.zshenv` (not `.profile` or `.zshrc`) — `.zshenv` is sourced by zsh unconditionally even for non-interactive shells.
-- **Stale lock from zombie gateway process**: When a double-fork gateway dies uncleanly, the Telegram lock file may reference a zombie PID. The next start attempt fails with "Telegram bot token already in use (PID X)." Diagnosis: `ps -o stat= -p <PID>` outputs `Z` for zombies. Fix: remove stale locks and kill zombies — the hardened daemon script in `references/docker-gateway-persistence.md` automates both.
 
 ### Platform-specific issues
-- **Telegram token rejected / InvalidToken**: BotFather tokens normally look like `<numeric_bot_id>:<secret>`. If the user provides only the secret-looking suffix without the numeric prefix and colon, do **not** write it into config or restart the gateway; ask them to revoke/regenerate via @BotFather. If an invalid token was already applied, stop the gateway and remove/disable the Telegram config to avoid retry spam. Details: `references/telegram-gateway-token-setup.md`.
-- **Gateway loses platforms after config change**: Modifying STT, model, or other config can rewrite `.env` and drop `TELEGRAM_BOT_TOKEN` (or other platform credentials). Symptom: gateway logs "No messaging platforms enabled" even though Telegram was previously working. Diagnostic recipe and fix: `references/gateway-config-change-env-loss.md`.
-- **Telegram gateway starts but denies users**: If logs warn "No user allowlists configured. All unauthorized users will be denied", configure `TELEGRAM_ALLOWED_USERS`, platform allowlists, or `GATEWAY_ALLOW_ALL_USERS=true` intentionally.
 - **Discord bot silent**: Must enable **Message Content Intent** in Bot → Privileged Gateway Intents.
 - **Slack bot only works in DMs**: Must subscribe to `message.channels` event. Without it, the bot ignores public channels.
 - **Windows-specific issues** (`Alt+Enter` newline, WinError 10106, UTF-8 BOM config, test suite, line endings): see the dedicated **Windows-Specific Quirks** section above.

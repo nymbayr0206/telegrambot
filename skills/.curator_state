@@ -1,9 +1,0 @@
-{
-  "last_report_path": "/opt/data/logs/curator/20260612-171831",
-  "last_run_at": "2026-06-12T17:18:31.004079+00:00",
-  "last_run_duration_seconds": 203.222154,
-  "last_run_summary": "auto: no changes; llm: Here's the full consolidation report.\n\n---\n\n## Consolidation Summary\n\n### Cluster 1: EspoCRM — `espocrm-api` → `espocrm-integration`\n\n**Why merge:** `espocrm-api` (API reconnaissance, auth methods, status codes, entity discovery, pagination…\narchived 3 skill(s):\n  • daily-morning-briefing → odoo-api-query\n  • espocrm-api → espocrm-integration\n  • mongolian-web-scraping → mongolian-real-estate-leads\nfull report: hermes curator status\nkeep an umbrella stable: hermes curator pin espocrm-integration",
-  "last_run_summary_shown_at": null,
-  "paused": false,
-  "run_count": 3
-}
