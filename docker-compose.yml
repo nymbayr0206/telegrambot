@@ -2,8 +2,7 @@ name: hermes-telegram-agent
 
 services:
   hermes-telegram-agent:
-    image: nousresearch/hermes-agent:latest
-    container_name: hermes-telegram-agent
+    image: ghcr.io/hostinger/hvps-hermes-agent:latest
     restart: unless-stopped
     command: ["gateway", "run"]
     env_file:

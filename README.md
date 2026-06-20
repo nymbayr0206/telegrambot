@@ -1,6 +1,8 @@
 # Hermes Telegram Agent Template
 
-Reusable production deployment template for a Hermes Telegram bot running in polling mode with:
+Reusable production deployment template for a Hermes Telegram bot running in polling mode. It uses the same Hostinger Hermes runtime image as the working VPS Hermes instance.
+
+Features:
 
 - DeepSeek chat through an OpenAI-compatible AI Gateway
 - Telegram allowlist access control
@@ -38,7 +40,7 @@ grep -R "GATEWAY_SERVER_IP" .env data/config.yaml
 Start the bot:
 
 ```sh
-docker compose up -d --build
+docker compose up -d
 ```
 
 ## Test
@@ -59,7 +61,7 @@ docker compose up -d --build
 - Top up the customer's tugrik balance.
 - Set `OPENAI_BASE_URL` to the customer's Gateway URL.
 - Set `OPENAI_API_KEY` to the customer's Gateway client API key.
-- Deploy with `docker compose up -d --build`.
+- Deploy with `docker compose up -d`.
 - Test text chat.
 - Test image generation.
 - Verify Gateway usage log and tugrik deduction.
