@@ -4,7 +4,10 @@ services:
   hermes-telegram-agent:
     image: ghcr.io/hostinger/hvps-hermes-agent:latest
     restart: unless-stopped
-    command: ["gateway", "run"]
+    entrypoint:
+      - /bin/sh
+      - -lc
+      - mkdir -p /opt/data/logs && uv pip install --python /opt/hermes/.venv/bin/python ddgs >/opt/data/logs/ddgs-install.log 2>&1 && exec /entrypoint.sh
     env_file:
       - .env
     environment:
@@ -16,3 +19,5 @@ services:
     volumes:
       - ./data:/opt/data:rw
       - ./workspace:/workspace
+      - ./runtime-patches/agent/conversation_loop.py:/opt/hermes/agent/conversation_loop.py:ro
+      - ./runtime-patches/tools/web_tools.py:/opt/hermes/tools/web_tools.py:ro

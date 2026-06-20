@@ -8,8 +8,8 @@ model:
 providers:
   ai-gateway:
     type: openai-compatible
-    api: http://GATEWAY_SERVER_IP:3010/api/gateway
-    base_url: http://GATEWAY_SERVER_IP:3010/api/gateway
+    api: http://72.62.197.97:3010/api/gateway
+    base_url: http://72.62.197.97:3010/api/gateway
     name: ai-gateway
     key_env: OPENAI_API_KEY
     api_key_env: OPENAI_API_KEY
@@ -29,7 +29,7 @@ providers:
 
 custom_providers:
   - name: ai-gateway
-    base_url: http://GATEWAY_SERVER_IP:3010/api/gateway
+    base_url: http://72.62.197.97:3010/api/gateway
     key_env: OPENAI_API_KEY
     model: deepseek-chat
     api_mode: chat_completions
@@ -48,6 +48,11 @@ custom_providers:
 terminal:
   backend: local
   cwd: /workspace
+
+web:
+  backend: ddgs
+  search_backend: ddgs
+  extract_backend: ddgs
 
 telegram:
   exclusive_bot_mentions: true
